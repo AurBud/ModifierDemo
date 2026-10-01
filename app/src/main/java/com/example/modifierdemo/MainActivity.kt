@@ -38,52 +38,58 @@ class MainActivity : ComponentActivity() {
             ModifierDemoTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     DemoScreen(Modifier.padding(innerPadding))
+
                 }
             }
         }
     }
-}
 
-@Composable
-fun DemoScreen(modifier: Modifier = Modifier) {
-    val mymodifier = modifier
-        .padding(all = 10.dp)
-        .border(width = 2.dp, color = Color.Black)
-    Column(
-        Modifier.padding(30.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
+    @Composable
+    fun DemoScreen(modifier: Modifier = Modifier) {
+        val mymodifier = modifier
+            .padding(all = 10.dp)
+            .border(width = 2.dp, color = Color.Black)
+        val secondModifier = Modifier.height(100.dp)
+        Column(
+            Modifier.padding(20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
 
-        Text(
-            "Hello Compose",
-            modifier = mymodifier,
-            fontSize = 40.sp,
-            fontWeight = FontWeight.Bold
+            Text(
+                "Hello Compose",
+                modifier =
+                mymodifier.then(secondModifier),
+                fontSize = 40.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(Modifier.height(16.dp))
+            CustomImage(
+                image = R.drawable.lab3,
+                modifier = Modifier
+                    .padding(16.dp)
+                    .width(270.dp)
+                    .clip(RoundedCornerShape(30.dp))
+
+            )
+        }
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun DefaultPreview() {
+        ModifierDemoTheme {
+            DemoScreen()
+        }
+    }
+
+    @Composable
+    fun CustomImage(image: Int, modifier: Modifier = Modifier) {
+        Image(
+            painter = painterResource(image),
+            contentDescription = null ,
+            modifier
         )
-        Spacer(Modifier.height(16.dp))
-        CustomImage(R.drawable.lab3)
-            Modifier
-                .padding(16.dp)
-                .width(270.dp)
-                .clip(shape = RoundedCornerShape(30.dp))
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ModifierDemoTheme {
-        DemoScreen()
-    }
-}
-
-@Composable
-fun CustomImage(image: Int, modifier: Modifier = Modifier) {
-    Image(
-        painter = painterResource(image),
-        contentDescription = null ,
-        modifier
-    )
 }
 
