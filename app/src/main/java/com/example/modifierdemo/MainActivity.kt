@@ -50,7 +50,7 @@ fun DemoScreen(modifier: Modifier = Modifier) {
         .padding(all = 10.dp)
         .border(width = 2.dp, color = Color.Black)
     Column(
-        Modifier.padding(20.dp),
+        Modifier.padding(30.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
